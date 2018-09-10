@@ -1,0 +1,52 @@
+<div class="container" *ngIf="enableList">
+	<!--added form but than decided that  i do t need it ... -->
+	<form  id="contact" >
+		<h3>Message</h3>
+		<h4>Select the service and send the email</h4>
+		<fieldset>
+			<input placeholder="Your name" type="text" tabindex="1" name="name" [(ngModel)]="model.name" autofocus>
+		</fieldset>
+		<fieldset>
+			<input placeholder="Enter Email Address" type="email" tabindex="2" name="mail" [(ngModel)]="mail" >
+		</fieldset>
+		<fieldset>
+			<input placeholder="Server url" type="url" tabindex="3" name="url" [(ngModel)]="model.url" >
+		</fieldset>
+		<fieldset>
+			<input placeholder="Enter subject" type="text" tabindex="4" name="subject" [(ngModel)]="model.subject">
+		</fieldset>
+		<fieldset>
+			<textarea placeholder="Type your message here...." tabindex="5" name="mailBody" [(ngModel)]="model.mailBody" ></textarea>
+		</fieldset>
+		<fieldset>
+			<button name="submit" type="button" id="contact-submit" (click)="Send()">Send</button>
+			<button name="add" type="button"  id="contact-submit" (click)="AddMail()">Add Mail</button>
+			<button name="add" type="button" id="contact-submit" (click)="ClearMail()">Clear Mail</button>
+		</fieldset>
+
+		<p class="email-info "><a (click)="Show()"  title="Get Info">Show List of Messages</a></p>
+	</form>
+</div>
+<div class="container1" *ngIf="!enableList">
+	<table class="zui-table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Body</th>
+				<th>Subject</th>
+				<th>Was Delivered</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let mail of mailList">
+				<td>{{mail.id}}</td>
+				<td>{{mail.name}}</td>
+				<td>{{mail.mailBody}}</td>
+				<td>{{mail.subject}}</td>
+				<td>{{mail.isSent ? "Yes" : "No"}}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<alert></alert>
